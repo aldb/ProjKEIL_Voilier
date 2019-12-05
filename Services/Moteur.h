@@ -2,24 +2,38 @@
 
 
 /**
-	* @brief  Active l'horloge et rËgle l'ARR et le PSC du timer visÈ + configure le mode PWM Output sur le timer visÈ
-  * @note   Fonction ‡ lancer avant toute autre.
-	* @param  TIM_TypeDef Timer : indique le timer ‡ utiliser par le chronomËtre, TIM1, TIM2, TIM3 ou TIM4.
-																Dans le cadre du projet, on doit utiliser TIM4
-	* 				int Arr   : valeur ‡ placer dans ARR
-	*					int Psc   : valeur ‡ placer dans PSC
+	* @brief  Active l'horloge et rÔøΩgle l'ARR et le PSC du timer visÔøΩ + configure le mode PWM Output sur le timer vis√©:
+				-> Initialisation des structures  pour configurer le port GPIO A1 (vitesse) et le port A2 (sens) pour la PWM output.
+				-> Initialisation des registres GPIO avec les informations des structures GPIO
+				->  Genere un compteur avec ARR/PSC => 1ms
+				
+
+				
+  * @note   Fonction de configuration √† lancer avant.
+	* @param  TIM_TypeDef Timer : indique le timer ÔøΩ utiliser par le chronomÔøΩtre (ici  TIM2 est utilis√©).
+																
+	* 				@param int Arr   : valeur ÔøΩ placer dans ARR
+	*					@param int Psc   : valeur ÔøΩ placer dans PSC
+	
   * @retval None
   */
 void PWM_Output_Conf(TIM_TypeDef * Timer, int ARR, int PSC);
 
 
 /**
-	* @brief  Active l'horloge et rËgle l'ARR et le PSC du timer visÈ + configure le mode PWM input sur le timer visÈ
-  * @note   Fonction ‡ lancer avant toute autre.
-	* @param  TIM_TypeDef Timer : indique le timer ‡ utiliser par le chronomËtre, TIM1, TIM2, TIM3 ou TIM4.
-																Dans le cadre du projet, on doit utiliser TIM4
-	* 				int Arr   : valeur ‡ placer dans ARR
-	*					int Psc   : valeur ‡ placer dans PSC
+	* @brief  g√©n√©ration de la pwm output:
+				->  On gÔøΩnÔøΩre une PWM en fonction de la valeur renvoy√© par la t√©l√©commande:
+	  if (Value >= 50 && Value <=78) { // On tourne vers la gauche
+			// On genere une PWM
+		}
+	  if (Value == 78) { // Il se passe rien
+		  
+		}
+		if (Value >= 78) { // On tourne vers la droite
+	   
+  * @note   Fonction ÔøΩ lancer apr√®s la configuration de la pwm output, et apr√®s avoir eu la valeur de la t√©l√©commande.
+	* @param  TIM_TypeDef Timer : indique le timer ÔøΩ utiliser par le chronomÔøΩtre( ici TIM2 est utilis√©)
+	* @param	float TelecomValue: indique la valeur de la telecommande re√ßu par PWM input auparavant.
   * @retval None
   */
 void PWM_Output_set(TIM_TypeDef * Timer,float TelecomValue);
