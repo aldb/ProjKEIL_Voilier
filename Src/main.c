@@ -39,7 +39,6 @@ void  SystemClock_Config(void);
   * @param  None
   * @retval None
   */
-	int valeurInput;
 
 int main(void)
 {
@@ -47,11 +46,16 @@ int main(void)
 	
   SystemClock_Config();
 	
-	//Configuration moteur telecomande
-	int ARRout = 999; // 	ARR 999 ET PSC 71 donne une période d'une ms
+	//Configuration moteur & telecomande
+	int ARRout = 999; // 	ARR 999 ET PSC 71 donne une pï¿½riode d'une ms
 	int PSCout = 71;
 	int ARRin=999;
-	int PSCin=1440-1; // toutes les 20ms on on genère la pwm 
+	int PSCin=1440-1; // toutes les 20ms on on genï¿½re la pwm 
+  
+  int valeurInput;
+
+  //Configuration PWM Input et PWM Output
+
   PWM_Output_Conf(TIM2,ARRout,PSCout);
 	PWM_Input_Conf(TIM4, ARRin, PSCin);
 	
@@ -62,18 +66,12 @@ int main(void)
 	//Conficuration roulis
 	init_adc();
 	int r,b,a;
-	
 
-  // Configuration chronomètre
-	//Chrono_Conf(TIM3);
-	//Chrono_Start();
-	
 	
   /* Infinite loop */
   while (1){
-		//Chrono_Background();
+	
 		a=Get_Angle();
-		
 		
 		r=get_roulis();
 		if (r > 45 || r <-45){
@@ -120,7 +118,7 @@ void SystemClock_Config(void)
 
   /* Enable HSE oscillator */
 	// ********* Commenter la ligne ci-dessous pour MCBSTM32 *****************
-	// ********* Conserver la ligne si Nucléo*********************************
+	// ********* Conserver la ligne si Nuclï¿½o*********************************
 	#ifndef OLIMEX
   LL_RCC_HSE_EnableBypass();
 	#endif
