@@ -49,18 +49,11 @@ void PWM_Input_Conf(TIM_TypeDef * Timer,int Arr,int Psc) {
 	
 	Timer->CCER|=TIM_CCER_CC1E; //1
 	Timer->CCER|=TIM_CCER_CC2E; //1
-	
-	// hyp : pulse toutes les 20ms
-	// On dÈtecte des valeurs de compteurs entre 0 et 100. parce que le psc est 2/100
-	// Or le signal PWM recu est mini a 1ms, et max a 2ms
-	// donc on rÈcupËre une valeur de compteur mini a 50.
-	// 1.5ms = pas d'entrÈe = CNT = 75 
-	// entre 1 et 1.5 -> CNT entre 50 et 75 
-	// entre 1.5 et 2 -> CNT entre 75 et 100 
-	// On genere la PWM qui controlera le plateau en fonction de la valeur dans le CCR2 
-	// On a 50 pts pour gerer la PWM (25 gauche , 25 droite) 
+
 }
 
 int PWM_get(TIM_TypeDef * Timer) {
+
+	//Recup√®re la valeur du compteur dans le registre CCR2 de Timer
 	return LL_TIM_IC_GetCaptureCH2(Timer);
 }

@@ -1,19 +1,21 @@
 #include "stm32f103xb.h" 
 /**
-	* @brief  Active l'horloge et rËgle l'ARR et le PSC du timer visÈ + configure le mode PWM input sur le timer visÈ
-  * @note   Fonction ‡ lancer avant toute autre.
-	* @param  TIM_TypeDef Timer : indique le timer ‡ utiliser par le chronomËtre, TIM1, TIM2, TIM3 ou TIM4.
-																Dans le cadre du projet, on doit utiliser TIM4.
-	* 				int Arr   : valeur ‡ placer dans ARR
-	*					int Psc   : valeur ‡ placer dans PSC
+	* @brief  Active l'horloge et r√®gle l'ARR et le PSC du timer visÔøΩ + configure le mode PWM input sur le timer vis√©
+  * @note   Fonction √† lancer au d√©but (avant la boucle while) pour configurer le PWM Input Mode.
+	* @param  TIM_TypeDef Timer : indique le timer √† utiliser par le chronom√®tre, TIM1, TIM2, TIM3 ou TIM4.
+																Dans le cadre du projet, on doit utiliser TIM4 pour pouvoir recup√©rer les inputs de la t√©l√©commande.
+	* 				int Arr   : valeur √† placer dans ARR 
+	*					int Psc   : valeur √† placer dans PSC
   * @retval None
   */
 void PWM_Input_Conf(TIM_TypeDef * Timer,int Arr, int Psc );
 
 /**
-  * @brief  RÈcupËre la valeur dans le registre CCR2 de TIM4 (valeur du compteur lors d'un falling edge)
-  * @note   
-	* @param 
-  * @retval la valeur (int) du compteur qui nous indique dans quelle direction tourner le plateau
+  * @brief  R√©cup√®re la valeur du compteur dans le registre CCR2 de Timer (valeur du compteur lors d'un falling edge)
+  * @note   A utiliser dans la boucle while(1)
+	* @param  TIM_TypeDef Timer : indique le timer √† utiliser par le chronom√®tre, TIM1, TIM2, TIM3 ou TIM4.
+																Dans le cadre du projet, on doit utiliser TIM4 car c'est le timer sur lequel on a configur√© la PWM Input.
+  * @retval la valeur (int) du compteur qui nous indique dans quelle direction tourner le moteur du plateau.
+  *         Cette valeur refl√®te un input (gauche, droite ou rien) sur la t√©l√©commande.
   */
 int PWM_get(TIM_TypeDef * Timer);
